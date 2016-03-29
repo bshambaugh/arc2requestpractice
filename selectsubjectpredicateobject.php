@@ -60,14 +60,27 @@ $dbg = 1;
      $subarray[$key] = $value->s;
  }
 
+ $subarraymatches = array();
  $subarraymatches = preg_grep('/http.*content/i',$subarray);
+
+/*
+ foreach($subarraymatches as $k => $value) {
+   echo ($subarraymatches[$k]);
+ }
+*/
+
+// print_r($subarraymatches);
+
 ?>
+
 
 <?php
 
+
 //$subjechtvar = 'http://localhost/drupal-7.42/content/owen-paterson';
 //$subject = '<'.$subjechtvar.'>';
- $secondarray = array(array());
+ //$secondarray = array(array());
+ $secondarray = array();
 
 foreach($subarraymatches as $k => $value) {
 
@@ -90,12 +103,45 @@ $subject = '<'.$subjechtvar.'>';
      array_push($objarray, $row->o);
  }
 
+//print_r($objarray);
+/*
+foreach ($predarray as $i => $value) {
+  echo $predarray[$i].' '.$objarray[$i];
+}
+*/
+$thirdarray = array();
 
-  foreach($predarray as $i => $value) {
-   $secondarray[strval($subarray[$k])][strval($predarray[$i])] = strval($objarray[$i]);
+foreach($predarray as $i => $value) {
+ // echo($predarray->uri);
+  $thirdarray[strval($predarray[$i])] = strval($objarray[$i]);
+}
+
+/*
+echo "The third array";
+echo("\r\n");
+foreach($thirdarray as $i => $value) {
+  echo $thirdarray[$i];
+}
+*/
+  //echo "=====\n";
+  //var_dump($predarray);
+  //echo "=====\n";
+
+  foreach($objarray as $i => $value) {
+  //  echo strval($subarraymatches[$k]).' '.strval($predarray[$i]).' '.strval($objarray[$i]);
+  /*
+    echo "k = $k, i = $i\n";
+    var_dump(array("s"=>$subarraymatches[$k], "p" => $predarray[$i], "o" => $objarray[$i]));
+    echo "\n";
+  */
+  // echo("\r\n");
+  //
+  $secondarray[strval($subarraymatches[$k])][strval($predarray[$i])] = strval($objarray[$i]);
  }
+
 }
 
 print_r($secondarray);
+
 
 ?>
