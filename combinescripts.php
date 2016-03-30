@@ -1,3 +1,3 @@
-<?php 
-  require_once('selectsubjects.php');
-  require_once('selectpredicateobject.php');
+<?php
+  require_once('selectsubjectpredicateobject.php');
+  require_once('multiimplodewkey.php'); 
