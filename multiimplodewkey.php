@@ -1,4 +1,6 @@
 <?php
+include('./Requests/library/Requests.php');
+Requests::register_autoloader();
 
 $multiarray = array('key' => array('innerkey' => 'value'),'key2' => array('innerkey2' => 'value2'));
 
@@ -94,4 +96,22 @@ function httpmatched($string) {
     $newstring = '\''.$string.'\'';
   }
   return $newstring;
+}
+
+function postandputtoldp($containertitle,$data) {
+$url = 'http://localhost:8080/marmotta/ldp/drupalsite/';
+$headers = array('Content-Type' => 'text/turtle','Slug' => $containertitle);
+$response = Requests::post($url, $headers);
+
+$url = $url.'/'.$containertitle;
+
+$existingheaders = get_headers($url);
+
+$etag = preg_replace('/ETag: /i','',$existingheaders[5]);
+
+$headers = array('Content-Type' => 'text/turtle',
+                 'If-Match' => $etag ,
+                  'Slug' => $containertitle);
+
+$response = Requests::put($url,$headers,$data);
 }

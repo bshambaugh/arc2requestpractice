@@ -22,7 +22,7 @@ fclose($handle);
 // end of code for the test
 */
 function postandputtoldp($containertitle,$data) {
-$url = 'http://localhost:8080/marmotta/ldp';
+$url = 'http://localhost:8080/marmotta/ldp/drupalsite/';
 $headers = array('Content-Type' => 'text/turtle','Slug' => $containertitle);
 $response = Requests::post($url, $headers);
 
