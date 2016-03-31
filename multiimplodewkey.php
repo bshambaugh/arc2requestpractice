@@ -17,10 +17,15 @@ foreach($secondarray as $a => $b) {
   $astring = strval($a).'.ttl';
   preg_match('/([^\\/])*ttl/',$astring,$matches);
   $filename = $matches[0];
+  $containername = preg_replace('/\.ttl/','',$filename);
+
   echo($filename);
+  // get the slug from the $filename by subtracting .ttl for postrequest.php here
   echo("\r\n");
 
-  $fp = fopen($filename,'w');
+// I am going to assume I do not need to create a file by commenting out below..
+//  $fp = fopen($filename,'rw');
+
   // echo("\r\n");
  foreach($b as $c => $d) {
 // echo($multiarray[$a][$c]);
@@ -64,8 +69,14 @@ echo("\r\n");
  echo("\r\n");
  */
 //$withcomma = implode("\n",$subarraymulti);
- fwrite($fp, $withcomma);
- fclose($fp);
+// I am going to assume I do not need to create a file by commenting out below..
+// fwrite($fp, $withcomma);
+
+ // see if this works...otherwise close and reopen file and put the function somewhere else...
+ postandputtoldp($containername,$withcomma);
+ //run the putrequest2.php file contents here...
+ // I am going to assume I do not need to create a file by commenting out below..
+ // fclose($fp);
 
 }
 
